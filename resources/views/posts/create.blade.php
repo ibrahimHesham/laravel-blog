@@ -26,38 +26,28 @@
 
 <div class="container mt-5">
 
+<form>
+  <div class="form-group">
+    <label for="Title">Title</label>
+    <input type="email" class="form-control" id="Title">
+  </div>
+  <div class="form-group">
+    <label for="PostCreator">Post Creator</label>
+    <select class="form-control" id="PostCreator">
+      <option>Ibrahim</option>
+      <option>Yehia</option>
+      <option>Ahmed</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="Description">Description</label>
+    <textarea class="form-control" id="Description" rows="3"></textarea>
+  </div>
+</form>
+
 <button type="button" class="btn btn-success">Create</button>
 
 
-<table class="table">
-  <thead class="thead-dark">
-    <tr>
-      <th scope="col">#</th>
-      <th scope="col">Title</th>
-      <th scope="col">posted_by</th>
-      <th scope="col">created_at</th>
-      <th scope="col">Action</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    @foreach($posts as $post)
-    <tr>
-      <th scope="row">{{$post['id']}}</th>
-      <td>{{$post['title']}}</td>
-      <td>{{$post['posted_by']}}</td>
-      <td>{{$post['created_at']}}</td>
-      <td>
-      <a href="{{ route('posts.show',['post' => $post['id']]) }}" type="button" class="btn btn-info">View</a>
-      <button type="button" class="btn btn-primary">Edit</a>
-      <button type="button" class="btn btn-danger">Delete</a>
-      </td>
-    </tr>
-
-    @endforeach
-
-  </tbody>
-</table>
 </div>
 
 
