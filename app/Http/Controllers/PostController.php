@@ -13,7 +13,6 @@ class PostController extends Controller
     ];
     public function index()
     {
-        
         return view('posts.index', [
             'posts' => $this->posts
         ]);
@@ -21,7 +20,7 @@ class PostController extends Controller
 
     public function show($postId)
     {
-        $post = ['id' => 1, 'title' => 'post 1', 'posted_by' => 'Ibrahim', 'created_at' => '2021-03-20', 'description' => 'here is first post description', 'Email' => 'ibrahim@gmail.com'];
+        $post=$this->posts[$postId-1];
         return view('posts.show', [
             'post' => $post
         ]);
@@ -34,8 +33,7 @@ class PostController extends Controller
 
     public function edit($postId)
     {
-        $post = ['id' => 1, 'title' => 'post 1', 'posted_by' => 'Ibrahim', 'created_at' => '2021-03-20', 'description' => 'here is first post description 11', 'Email' => 'ibrahim@gmail.com'];
-        
+        $post=$this->posts[$postId-1];
         return view('posts.edit', [
             'post' => $post
         ]);
