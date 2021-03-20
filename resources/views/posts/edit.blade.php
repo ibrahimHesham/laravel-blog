@@ -26,33 +26,26 @@
 
 <div class="container mt-5">
 
-    <div class="card">
-        <div class="card-header">
-            Post info
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Title : </h5>
-            <p class="card-text">{{$post['title']}}</p>
-            <h5 class="card-title">Description : </h5>
-            <p class="card-text">{{$post['description']}}</p>
-        </div>
-    </div>
+<form>
+  <div class="form-group">
+    <label for="Title">Title</label>
+    <input type="email" class="form-control" id="Title" value="{{$post['title']}}">
+  </div>
+  <div class="form-group">
+    <label for="PostCreator">Post Creator</label>
+    <select class="form-control" id="PostCreator">
+      <option value="Ibrahim">Ibrahim</option>
+      <option value="Yehia">Yehia</option>
+      <option value="Ahmed">Ahmed</option>
+    </select>
+  </div>
+  <div class="form-group">
+    <label for="Description">Description</label>
+    <textarea class="form-control" id="Description" rows="3">{{$post['description']}}</textarea>
+  </div>
+</form>
 
-    <div class="card mt-5">
-        <div class="card-header">
-            Post creator info
-        </div>
-        <div class="card-body">
-            <h5 class="card-title">Name: </h5>
-            <p class="card-text">{{$post['posted_by']}}</p>
-            <h5 class="card-title">Email : </h5>
-            <p class="card-text">{{$post['Email']}}</p>
-            <h5 class="card-title">Created at : </h5>
-            <p class="card-text">{{$post['created_at']}}</p>
-        </div>
-    </div>
-
-
+<a href="{{ route('posts.index') }}"  type="button" class="btn btn-success">Update</a>
 
 
 </div>

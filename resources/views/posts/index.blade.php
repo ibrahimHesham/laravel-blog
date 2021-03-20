@@ -8,16 +8,16 @@
     <title></title>
 </head>
 <body>
-    
+
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <a class="navbar-brand" href="#">Navbar</a>
+  <a class="navbar-brand" href="{{ route('posts.index') }}">Navbar</a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
   <div class="collapse navbar-collapse" id="navbarNavDropdown">
     <ul class="navbar-nav">
       <li class="nav-item active">
-        <a class="nav-link" href="#">All posts <span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="{{ route('posts.index') }}">All posts <span class="sr-only">(current)</span></a>
       </li>
     </ul>
   </div>
@@ -26,7 +26,7 @@
 
 <div class="container mt-5">
 
-<button type="button" class="btn btn-success">Create</button>
+<a href="{{ route('posts.create') }}"  type="button" class="btn btn-success">Create</a>
 
 
 <table class="table">
@@ -49,8 +49,8 @@
       <td>{{$post['created_at']}}</td>
       <td>
       <a href="{{ route('posts.show',['post' => $post['id']]) }}" type="button" class="btn btn-info">View</a>
-      <button type="button" class="btn btn-primary">Edit</a>
-      <button type="button" class="btn btn-danger">Delete</a>
+      <a href="{{ route('posts.edit',['post' => $post['id']]) }}" class="btn btn-primary">Edit</a>
+      <button type="button" class="btn btn-danger">Delete</button>
       </td>
     </tr>
 
