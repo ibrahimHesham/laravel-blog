@@ -41,7 +41,7 @@
   </thead>
   <tbody>
 
-    @foreach($posts as $post)
+    @foreach($pageposts as $post)
     <tr>
       <th scope="row">{{$post['id']}}</th>
       <td>{{$post['title']}}</td>
@@ -50,7 +50,7 @@
       <td>
       <a href="{{ route('posts.show',['post' => $post['id']]) }}" type="button" class="btn btn-info">View</a>
       <a href="{{ route('posts.edit',['post' => $post['id']]) }}" class="btn btn-primary">Edit</a>
-      <form action="{{ route('posts.destroy',['post' => $post['id']]) }}" method="POST" style="display:inline">
+      <form action="{{ route('posts.destroy',['post' => $post['id']]) }}" method="POST" style="display:inline" onsubmit="return confirm('Do you really want to delete?');">
         @method('DELETE')
         @csrf
         <button type="submit" class="btn btn-danger">Delete</button>    
@@ -62,6 +62,15 @@
 
   </tbody>
 </table>
+
+<nav aria-label="Page navigation example">
+  <ul class="pagination justify-content-center">  
+    @for ($i = 0; $i < count($posts)/5 ; $i++)
+      <li class="page-item"><a class="page-link" href="{{ route('posts.paginate',['page' => $i+1]) }}">{{$i+1}}</a></li>
+    @endfor
+  </ul>
+</nav>
+
 </div>
 
 

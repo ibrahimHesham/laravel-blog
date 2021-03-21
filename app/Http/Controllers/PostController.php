@@ -11,9 +11,24 @@ class PostController extends Controller
     public function index()
     {
         $allPosts=Post::all();
-        //dd($allPosts);
+        $pagePosts=Post::take(5)->get();
+        //dd(count($allPosts));
         return view('posts.index', [
-            'posts' => $allPosts
+            'posts' => $allPosts,
+            'pageposts'=>$pagePosts
+        ]);
+    }
+
+    public function paginate($pageNo)
+    {
+        $allPosts=Post::all();
+        $pagePosts=Post::skip(($pageNo-1)*5)->take(5)->get();
+        //dd(count($allPosts));
+        //dd($pagePosts);
+        return view('posts.index', [
+            'posts' => $allPosts,
+            'pageposts'=>$pagePosts
+            
         ]);
     }
 
