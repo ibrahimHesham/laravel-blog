@@ -65,4 +65,12 @@ class PostController extends Controller
         $updatedPost->save();
         return redirect()->route('posts.index');
     }
+
+    public function destroy($postId)
+    {
+        //dd($postId);
+        $post = Post::find($postId);
+        $post->delete();
+        return redirect()->route('posts.index');
+    }
 }

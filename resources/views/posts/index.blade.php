@@ -50,7 +50,11 @@
       <td>
       <a href="{{ route('posts.show',['post' => $post['id']]) }}" type="button" class="btn btn-info">View</a>
       <a href="{{ route('posts.edit',['post' => $post['id']]) }}" class="btn btn-primary">Edit</a>
-      <button type="button" class="btn btn-danger">Delete</button>
+      <form action="{{ route('posts.destroy',['post' => $post['id']]) }}" method="POST" style="display:inline">
+        @method('DELETE')
+        @csrf
+        <button type="submit" class="btn btn-danger">Delete</button>    
+      </form>
       </td>
     </tr>
 
