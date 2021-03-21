@@ -44,9 +44,9 @@
         </div>
         <div class="card-body">
             <h5 class="card-title">Name: </h5>
-            <p class="card-text">{{$post['posted_by']}}</p>
+            <p class="card-text">{{ $post->user ? $post->user->name : 'user not found' }}</p>
             <h5 class="card-title">Email : </h5>
-            <p class="card-text">{{$post['Email']}}</p>
+            <p class="card-text">{{ $post->user ? $post->user->email : 'user not found' }}</p>
             <h5 class="card-title">Created at : </h5>
             <p class="card-text">{{$post['created_at']}}</p>
         </div>

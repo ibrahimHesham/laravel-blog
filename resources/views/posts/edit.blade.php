@@ -26,26 +26,29 @@
 
 <div class="container mt-5">
 
-<form>
+<form method="POST" action="{{ route('posts.update', ['post' => $post['id']]) }}">
   <div class="form-group">
+  @csrf
+  @method('PUT')
     <label for="Title">Title</label>
-    <input type="email" class="form-control" id="Title" value="{{$post['title']}}">
+    <input name="title" type="text" class="form-control" id="Title" value="{{$post['title']}}">
   </div>
   <div class="form-group">
     <label for="PostCreator">Post Creator</label>
-    <select class="form-control" id="PostCreator">
-      <option value="Ibrahim">Ibrahim</option>
-      <option value="Yehia">Yehia</option>
-      <option value="Ahmed">Ahmed</option>
+    <select name="user_id" class="form-control" id="PostCreator">
+      @foreach ($users as $user)
+          <option value="{{$user->id}}">{{$user->name}}</option>
+      @endforeach
     </select>
   </div>
   <div class="form-group">
     <label for="Description">Description</label>
-    <textarea class="form-control" id="Description" rows="3">{{$post['description']}}</textarea>
+    <textarea name="description" class="form-control" id="Description" rows="3">{{$post['description']}}</textarea>
   </div>
+  <button type="submit" class="btn btn-success">Update</button>
 </form>
 
-<a href="{{ route('posts.index') }}"  type="button" class="btn btn-success">Update</a>
+
 
 
 </div>
