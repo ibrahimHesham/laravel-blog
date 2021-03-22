@@ -21,7 +21,7 @@
       <th scope="row">{{$post['id']}}</th>
       <td>{{$post['title']}}</td>
       <td>{{ $post->user ? $post->user->name : 'user not found' }}</td>
-      <td>{{$post['created_at']}}</td>
+      <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post['created_at'])->format('Y-m-d')}}</td>
       <td>
       <a href="{{ route('posts.show',['post' => $post['id']]) }}" type="button" class="btn btn-info">View</a>
       <a href="{{ route('posts.edit',['post' => $post['id']]) }}" class="btn btn-primary">Edit</a>

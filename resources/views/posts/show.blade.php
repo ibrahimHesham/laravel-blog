@@ -26,7 +26,7 @@
             <h5 class="card-title">Email : </h5>
             <p class="card-text">{{ $post->user ? $post->user->email : 'user not found' }}</p>
             <h5 class="card-title">Created at : </h5>
-            <p class="card-text">{{$post['created_at']}}</p>
+            <p class="card-text">{{ Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post['created_at'])->format('l jS \\of F Y h:i:s A') }}</p>
         </div>
     </div>
     @endsection
