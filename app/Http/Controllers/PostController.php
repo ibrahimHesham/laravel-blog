@@ -13,7 +13,7 @@ class PostController extends Controller
     {
         $allPosts=Post::all();
         $pagePosts=Post::take(15)->get();
-        //dd(count($allPosts));
+        //dd($pagePosts);
         return view('posts.index', [
             'posts' => $allPosts,
             'pageposts'=>$pagePosts

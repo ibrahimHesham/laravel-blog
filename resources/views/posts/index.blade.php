@@ -9,6 +9,7 @@
     <tr>
       <th scope="col">#</th>
       <th scope="col">Title</th>
+      <th scope="col">Slug</th>
       <th scope="col">posted_by</th>
       <th scope="col">created_at</th>
       <th scope="col">Action</th>
@@ -20,6 +21,7 @@
     <tr>
       <th scope="row">{{$post['id']}}</th>
       <td>{{$post['title']}}</td>
+      <td>{{ $post->slug ? $post->slug : 'not slugged' }}</td>
       <td>{{ $post->user ? $post->user->name : 'user not found' }}</td>
       <td>{{Carbon\Carbon::createFromFormat('Y-m-d H:i:s', $post['created_at'])->format('Y-m-d')}}</td>
       <td>

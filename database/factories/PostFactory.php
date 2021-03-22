@@ -25,7 +25,7 @@ class PostFactory extends Factory
         return [
             'title' => Str::random(10),
             'description' => Str::random(30),
-            'user_id' => rand(21, 60)
+            'user_id' => rand(105, 142)
            
         ];
     }
