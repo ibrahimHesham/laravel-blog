@@ -5,13 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Post;
 use App\Models\User;
+use App\Http\Requests\StorePostRequest;
 
 class PostController extends Controller
 {
     public function index()
     {
         $allPosts=Post::all();
-        $pagePosts=Post::take(5)->get();
+        $pagePosts=Post::take(15)->get();
         //dd(count($allPosts));
         return view('posts.index', [
             'posts' => $allPosts,
@@ -22,7 +23,7 @@ class PostController extends Controller
     public function paginate($pageNo)
     {
         $allPosts=Post::all();
-        $pagePosts=Post::skip(($pageNo-1)*5)->take(5)->get();
+        $pagePosts=Post::skip(($pageNo-1)*15)->take(15)->get();
         //dd(count($allPosts));
         //dd($pagePosts);
         return view('posts.index', [
@@ -56,7 +57,7 @@ class PostController extends Controller
         ]);
     }
 
-    public function store(Request $request) // == calling request()
+    public function store(StorePostRequest $request) // == calling request()
     {
         //dd(intval($request->user_id));
         $post = new Post;
@@ -68,9 +69,10 @@ class PostController extends Controller
         return redirect()->route('posts.index');
     }
 
-    public function update(Request $request, $postId) // == calling request()
+    public function update(StorePostRequest $request, $postId) // == calling request()
     {
         //dd($postId, intval($request->user_id), $request->description, $request->title);
+        //dd($request->all());
         $updatedPost = Post::find(intval($postId));
 
         $updatedPost->title = $request->title;

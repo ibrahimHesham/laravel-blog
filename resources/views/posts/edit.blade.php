@@ -4,10 +4,22 @@
 
 @section('content')
 
+
+@if ($errors->any())
+  <div class="alert alert-danger" style="margin-top: 20px">
+        <ul>
+            @foreach ($errors->all() as $error)
+                <li>{{ $error }}</li>
+            @endforeach
+        </ul>
+    </div>
+@endif
+
 <form method="POST" action="{{ route('posts.update', ['post' => $post['id']]) }}">
   <div class="form-group">
   @csrf
   @method('PUT')
+    <input type="hidden" id="id" name="id" value="{{$post['id']}}">
     <label for="Title">Title</label>
     <input name="title" type="text" class="form-control" id="Title" value="{{$post['title']}}">
   </div>

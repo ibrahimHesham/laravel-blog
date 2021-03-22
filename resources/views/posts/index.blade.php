@@ -40,7 +40,7 @@
 
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">  
-    @for ($i = 0; $i < count($posts)/5 ; $i++)
+    @for ($i = 0; $i < count($posts)/15 ; $i++)
       <li class="page-item"><a class="page-link" href="{{ route('posts.paginate',['page' => $i+1]) }}">{{$i+1}}</a></li>
     @endfor
   </ul>
