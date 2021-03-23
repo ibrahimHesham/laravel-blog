@@ -13,6 +13,12 @@ class Post extends Model
     use SoftDeletes;
     use Sluggable;
 
+    protected $fillable =[
+        'title',
+        'description',
+        'user_id'
+    ];
+
     public function user() //foreign key user_id
     {
         return $this->belongsTo(User::class);
