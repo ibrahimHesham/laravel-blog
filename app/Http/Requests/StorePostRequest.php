@@ -26,7 +26,7 @@ class StorePostRequest extends FormRequest
         return [
             'title' => ['required','unique:posts,title,'. $this->id .',id','min:3'],//Rule::unique('users')->ignore($user->id),
             'description' => ['required','min:10'],
-            'user_id' => 'exists:posts'
+            'user_id' => 'exists:users,id'
         ];
     }
 }

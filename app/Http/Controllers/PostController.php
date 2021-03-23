@@ -11,24 +11,26 @@ class PostController extends Controller
 {
     public function index()
     {
-        $allPosts=Post::all();
-        $pagePosts=Post::take(15)->get();
-        //dd($pagePosts);
-        return view('posts.index', [
-            'posts' => $allPosts,
-            'pageposts'=>$pagePosts
-        ]);
+        // $allPosts=Post::all();
+        // $pagePosts=Post::take(20)->get();
+        // //dd($pagePosts);
+        // return view('posts.index', [
+        //     'posts' => $allPosts,
+        //     'pageposts'=>$pagePosts
+        // ]);
+        return redirect()->route('posts.paginate', ['page'=>1]);
     }
 
     public function paginate($pageNo)
     {
         $allPosts=Post::all();
-        $pagePosts=Post::skip(($pageNo-1)*15)->take(15)->get();
+        $pagePosts=Post::skip(($pageNo-1)*20)->take(20)->get();
         //dd(count($allPosts));
         //dd($pagePosts);
         return view('posts.index', [
             'posts' => $allPosts,
-            'pageposts'=>$pagePosts
+            'pageposts'=>$pagePosts,
+            'pNo'=>$pageNo
             
         ]);
     }

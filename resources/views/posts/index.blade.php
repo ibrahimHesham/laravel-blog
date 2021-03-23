@@ -39,12 +39,22 @@
 
   </tbody>
 </table>
-
 <nav aria-label="Page navigation example">
   <ul class="pagination justify-content-center">  
-    @for ($i = 0; $i < count($posts)/15 ; $i++)
+    <li class="page-item"><a class="page-link" href="{{ route('posts.paginate',['page' => $pNo-1]) }}">Previous</a></li>
+    @for ($i = ( $pNo>3 ? $pNo-4 : 0 ); $i < count($posts)/20 && $i<( $pNo>((count($posts)/20)+3) ? count($posts)/20 : $pNo+3 ) ; $i++)
+
+    @if ($i+1 == $pNo)
+    <li class="page-item active" aria-current="page">
+      <span class="page-link">{{$i+1}}</span>
+    </li>
+      <!-- <li class="page-item active" aria-current="page"><a class="page-link" href="{{ route('posts.paginate',['page' => $i+1]) }}">{{$i+1}}</a></li> -->
+    @else
       <li class="page-item"><a class="page-link" href="{{ route('posts.paginate',['page' => $i+1]) }}">{{$i+1}}</a></li>
+    @endif
+      <!-- <li class="page-item"><a class="page-link" href="{{ route('posts.paginate',['page' => $i+1]) }}">{{$i+1}}</a></li> -->
     @endfor
+    <li class="page-item"><a class="page-link" href="{{ route('posts.paginate',['page' => $pNo+1]) }}">Next</a></li>
   </ul>
 </nav>
 @endsection
