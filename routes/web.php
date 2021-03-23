@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\PostController;
+use Laravel\Socialite\Facades\Socialite;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,3 +34,32 @@ Route::get('/posts/{post}/edit', [PostController::class,'edit'])->name('posts.ed
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/auth/redirect', function () {
+    return Socialite::driver('github')->redirect();
+});
+
+Route::get('/auth/callback', function () {
+    $githubUser = Socialite::driver('github')->user();
+
+    $user = User::where('provider_id', $githubUser->getId())->first();
+    //$provId=strval($githubUser->id);
+    //dd($provId);
+    if (! $user) {
+        $user = User::create([
+            'email'=> $githubUser->getEmail(),
+            'name'=> $githubUser->getName(),
+            'provider_id'=> $githubUser->id
+        ]);
+    }
+
+    auth()->login($user, true);
+    return redirect()->route('posts.index');
+
+    // if ($authUser = User::where('github_id', $user->id)->first()) {
+    //     return $authUser;
+    // }
+
+    //dd($user);
+    // $user->token
+});
