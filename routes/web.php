@@ -55,11 +55,26 @@ Route::get('/auth/callback', function () {
 
     auth()->login($user, true);
     return redirect()->route('posts.index');
+});
 
-    // if ($authUser = User::where('github_id', $user->id)->first()) {
-    //     return $authUser;
-    // }
+Route::get('/auth/google', function () {
+    return Socialite::driver('google')->redirect();
+});
 
-    //dd($user);
-    // $user->token
+Route::get('/auth/google/callback', function () {
+    $googleUser = Socialite::driver('google')->user();
+
+    $user = User::where('provider_id', $googleUser->getId())->first();
+    //$provId=strval($githubUser->id);
+    //dd($googleUser);
+    if (! $user) {
+        $user = User::create([
+            'email'=> $googleUser->getEmail(),
+            'name'=> $googleUser->getName(),
+            'provider_id'=> $googleUser->id
+        ]);
+    }
+
+    auth()->login($user, true);
+    return redirect()->route('posts.index');
 });
